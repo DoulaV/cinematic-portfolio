@@ -23,17 +23,16 @@
         }
 
         body[dir="ltr"] { font-family: 'Oswald', sans-serif; }
-        .red-glow { text-shadow: 0 0 20px rgba(229, 9, 20, 0.8); }
+        .red-glow { text-shadow: 0 0 25px rgba(229, 9, 20, 1); }
         
-        /* --- 1. إضاءة الخلفية (Fixed & Huge) --- */
-        /* position: fixed >> عشان تثبت والكونتنت يتحرك */
-        /* width: 60vw >> يعني 60% من عرض الشاشة مهما كانت كبيرة */
+        /* --- 1. إضاءة الخلفية (Stronger & Vivid) --- */
+        /* زودنا الـ Opacity وكبرنا الحجم عشان الألوان تبان بجد */
         
         .ambient-light-red {
             position: fixed; 
-            width: 60vw; height: 60vw; 
-            background: radial-gradient(circle, rgba(229,9,20,0.25) 0%, rgba(0,0,0,0) 70%); 
-            top: -20%; right: -20%; 
+            width: 80vw; height: 80vw; /* حجم أكبر */
+            background: radial-gradient(circle, rgba(229, 9, 20, 0.45) 0%, rgba(0,0,0,0) 70%); /* لون أقوى */
+            top: -20%; right: -30%; 
             z-index: -1; 
             pointer-events: none;
             animation: pulse-red 8s infinite alternate;
@@ -41,44 +40,32 @@
 
         .ambient-light-sun {
             position: fixed;
-            width: 70vw; height: 70vw; 
-            background: radial-gradient(circle, rgba(255, 215, 0, 0.15) 0%, rgba(0,0,0,0) 60%); 
-            bottom: -20%; left: -20%; 
+            width: 90vw; height: 90vw; /* حجم أكبر */
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.25) 0%, rgba(0,0,0,0) 60%); /* لون أقوى */
+            bottom: -30%; left: -30%; 
             z-index: -2; 
             pointer-events: none;
             animation: pulse-sun 10s infinite alternate-reverse;
         }
 
-        /* أنيميشن هادئ جداً */
-        @keyframes pulse-red { 0% { transform: scale(1) translate(0,0); opacity: 0.5; } 100% { transform: scale(1.1) translate(-20px, 20px); opacity: 0.8; } }
-        @keyframes pulse-sun { 0% { transform: scale(1) translate(0,0); opacity: 0.4; } 100% { transform: scale(1.15) translate(30px, -30px); opacity: 0.7; } }
+        @keyframes pulse-red { 0% { transform: scale(1) translate(0,0); opacity: 0.6; } 100% { transform: scale(1.1) translate(-20px, 20px); opacity: 0.9; } }
+        @keyframes pulse-sun { 0% { transform: scale(1) translate(0,0); opacity: 0.5; } 100% { transform: scale(1.15) translate(30px, -30px); opacity: 0.8; } }
         
         /* --- 2. ستايل الزجاج (Glassmorphism) --- */
-        /* الكروت والمعدات هتكون شفافة عشان تبين الخلفية */
-        
         .glass-panel {
-            background: rgba(20, 20, 20, 0.4); /* أسود شفاف */
-            backdrop-filter: blur(12px); /* تأثير الزجاج */
-            -webkit-backdrop-filter: blur(12px);
+            background: rgba(20, 20, 20, 0.4);
+            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.08);
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
         }
 
-        .gear-item {
-            background: rgba(255,255,255,0.03); 
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255,255,255,0.05); 
-            transition: all 0.3s; 
-        }
-        .gear-item:hover { border-color: var(--primary-red); transform: translateY(-5px); background: rgba(229, 9, 20, 0.1); }
-        
         .reel-card { 
             border-radius: 15px; overflow: hidden; position: relative; 
             border: 1px solid rgba(255, 255, 255, 0.1); 
             transition: transform 0.3s, border-color 0.3s; 
-            background: rgba(0,0,0,0.5); /* شفاف بدل الأسود الصريح */
+            background: rgba(0,0,0,0.6); 
         }
-        .reel-card:hover { transform: scale(1.02); border-color: var(--primary-red); box-shadow: 0 0 30px rgba(229, 9, 20, 0.2); }
+        .reel-card:hover { transform: scale(1.02); border-color: var(--primary-red); box-shadow: 0 0 30px rgba(229, 9, 20, 0.3); }
         
         video { object-fit: cover; width: 100%; height: 100%; cursor: pointer; }
 
@@ -86,6 +73,11 @@
         .lang-btn { position: fixed; top: 20px; left: 20px; z-index: 100; background: rgba(0,0,0,0.5); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2); color: white; padding: 8px 16px; border-radius: 50px; font-weight: bold; cursor: pointer; transition: 0.3s; }
         body[dir="ltr"] .lang-btn { left: auto; right: 20px; }
         .lang-btn:hover { border-color: var(--primary-red); color: var(--primary-red); background: rgba(0,0,0,0.8); }
+
+        /* توهج أزرار السوشيال */
+        .glow-wa { box-shadow: 0 0 20px rgba(37, 211, 102, 0.4); border: 1px solid rgba(37, 211, 102, 0.3); }
+        .glow-insta { box-shadow: 0 0 20px rgba(219, 39, 119, 0.4); border: 1px solid rgba(219, 39, 119, 0.3); }
+        .glow-email { box-shadow: 0 0 20px rgba(255, 255, 255, 0.2); border: 1px solid rgba(255, 255, 255, 0.2); }
     </style>
 </head>
 <body class="antialiased">
@@ -103,7 +95,12 @@
         <h1 class="text-5xl md:text-7xl font-black mb-2 tracking-tighter drop-shadow-lg">
             AKADOOLA <span class="text-[#E50914] text-6xl">.</span>
         </h1>
-        <p id="bio" class="text-xl text-gray-300 font-light mb-8 max-w-lg mx-auto drop-shadow-md">صانع محتوى سينمائي | قصص عميقة</p>
+        <p id="bio" class="text-xl text-gray-300 font-light mb-4 max-w-lg mx-auto drop-shadow-md">صانع محتوى سينمائي | قصص عميقة</p>
+
+        <div class="inline-flex items-center gap-2 px-4 py-2 mb-8 bg-white/5 rounded-full border border-white/10 backdrop-blur-md hover:bg-white/10 transition-colors">
+            <i class="fa-solid fa-location-dot text-[#E50914]"></i>
+            <span id="location-text" class="text-sm font-semibold tracking-wide text-gray-200">Based in UAE</span>
+        </div>
 
         <div class="flex gap-6 mb-12">
             <div class="text-center">
@@ -123,18 +120,6 @@
         <a href="#work" class="animate-bounce text-gray-500 hover:text-[#E50914] transition">
             <i class="fa-solid fa-chevron-down text-2xl"></i>
         </a>
-    </section>
-
-    <section class="py-10 px-6 border-b border-gray-800 w-full bg-black/30 backdrop-blur-sm">
-        <div class="max-w-4xl mx-auto">
-            <h3 id="gear-title" class="text-center text-gray-400 text-sm uppercase tracking-widest mb-6">معداتي (My Arsenal)</h3>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-                <div class="gear-item p-4 rounded-xl"><i class="fa-solid fa-camera text-[#E50914] text-2xl mb-2"></i><p class="font-bold text-sm">Sony a6700</p></div>
-                <div class="gear-item p-4 rounded-xl"><i class="fa-solid fa-laptop-code text-[#E50914] text-2xl mb-2"></i><p class="font-bold text-sm">MacBook Pro M5</p></div>
-                <div class="gear-item p-4 rounded-xl"><i class="fa-solid fa-lightbulb text-[#E50914] text-2xl mb-2"></i><p class="font-bold text-sm">Amaran 200x S</p></div>
-                <div class="gear-item p-4 rounded-xl"><i class="fa-solid fa-video text-[#E50914] text-2xl mb-2"></i><p class="font-bold text-sm">DJI RS4 Mini</p></div>
-            </div>
-        </div>
     </section>
 
     <section id="work" class="py-20 px-6 max-w-6xl mx-auto w-full">
@@ -181,12 +166,21 @@
     </section>
 
     <section class="py-20 px-6 border-t border-gray-800 text-center w-full bg-black/40 backdrop-blur-md">
-        <h2 id="contact-title" class="text-4xl font-black mb-4">جاهز للعمل؟</h2>
+        <h2 id="contact-title" class="text-4xl font-black mb-4">للتواصل</h2>
         <p id="contact-desc" class="text-gray-400 mb-10">متاح للرعايات والإنتاج السينمائي</p>
-        <div class="flex flex-col md:flex-row justify-center gap-4 max-w-2xl mx-auto">
-            <a href="https://wa.me/971565854189" target="_blank" class="flex-1 py-4 bg-[#25D366] text-black font-bold rounded-xl hover:bg-[#20bd5a] flex items-center justify-center gap-2 shadow-lg shadow-green-900/20"><i class="fa-brands fa-whatsapp text-xl"></i> <span id="btn-wa">تواصل واتساب</span></a>
-            <a href="https://www.instagram.com/akadoola/" target="_blank" class="flex-1 py-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold rounded-xl hover:opacity-90 flex items-center justify-center gap-2 shadow-lg shadow-purple-900/20"><i class="fa-brands fa-instagram text-xl"></i> Instagram</a>
-            <a href="mailto:akadoolaa@gmail.com" class="flex-1 py-4 bg-gray-800 text-white font-bold rounded-xl flex items-center justify-center gap-2 hover:bg-gray-700 border border-gray-700"><i class="fa-solid fa-envelope text-xl"></i> Email</a>
+        <div class="flex flex-col md:flex-row justify-center gap-6 max-w-2xl mx-auto">
+            
+            <a href="https://wa.me/971565854189" target="_blank" class="flex-1 py-4 bg-[#25D366] text-black font-bold rounded-xl hover:bg-[#20bd5a] flex items-center justify-center gap-2 glow-wa transition-all hover:scale-105">
+                <i class="fa-brands fa-whatsapp text-xl"></i> <span id="btn-wa">واتساب</span>
+            </a>
+            
+            <a href="https://www.instagram.com/akadoola/" target="_blank" class="flex-1 py-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold rounded-xl hover:opacity-90 flex items-center justify-center gap-2 glow-insta transition-all hover:scale-105">
+                <i class="fa-brands fa-instagram text-xl"></i> Instagram
+            </a>
+            
+            <a href="mailto:akadoolaa@gmail.com" class="flex-1 py-4 bg-gray-800 text-white font-bold rounded-xl flex items-center justify-center gap-2 hover:bg-gray-700 glow-email transition-all hover:scale-105">
+                <i class="fa-solid fa-envelope text-xl"></i> Email
+            </a>
         </div>
         <p class="mt-12 text-gray-500 text-sm dir-ltr">© 2025 Akadoola. All Rights Reserved.</p>
     </section>
@@ -194,10 +188,26 @@
     <script>
         let isArabic = true;
         const translations = {
-            ar: { bio: "صانع محتوى سينمائي | قصص عميقة", stat1: "مشاهدات فايرال", stat2: "تفاعل حقيقي", stat3: "جودة سينمائية", gearTitle: "معداتي (MY ARSENAL)", workTitle: "أفضل الأعمال", vid1: "العمر والوقت", vid2: "عدم الاستسلام", vid3: "عمل تجاري", contactTitle: "جاهز للعمل؟", contactDesc: "متاح للرعايات والإنتاج السينمائي", btnWa: "تواصل واتساب" },
-            en: { bio: "Cinematic Storyteller | Deep Narratives", stat1: "Viral Views", stat2: "Real Engagement", stat3: "Cinematic Quality", gearTitle: "MY ARSENAL", workTitle: "Selected Work", vid1: "Time & Age", vid2: "Resilience", vid3: "Commercial Work", contactTitle: "Ready to Create?", contactDesc: "Available for Sponsorships & Production", btnWa: "Chat on WhatsApp" }
+            ar: { 
+                bio: "صانع محتوى سينمائي | قصص عميقة", 
+                location: "Based in UAE",
+                stat1: "مشاهدات فايرال", stat2: "تفاعل حقيقي", stat3: "جودة سينمائية", 
+                workTitle: "أفضل الأعمال", 
+                vid1: "العمر والوقت", vid2: "عدم الاستسلام", vid3: "عمل تجاري", 
+                contactTitle: "للتواصل", contactDesc: "متاح للرعايات والإنتاج السينمائي", 
+                btnWa: "واتساب" 
+            },
+            en: { 
+                bio: "Cinematic Storyteller | Deep Narratives", 
+                location: "Based in UAE",
+                stat1: "Viral Views", stat2: "Real Engagement", stat3: "Cinematic Quality", 
+                workTitle: "Selected Work", 
+                vid1: "Time & Age", vid2: "Resilience", vid3: "Commercial Work", 
+                contactTitle: "Get in Touch", contactDesc: "Available for Sponsorships & Production", 
+                btnWa: "WhatsApp" 
+            }
         };
-        function toggleLanguage() { isArabic = !isArabic; const lang = isArabic ? 'ar' : 'en'; const content = translations[lang]; document.documentElement.dir = isArabic ? 'rtl' : 'ltr'; document.getElementById('bio').innerText = content.bio; document.getElementById('stat1').innerText = content.stat1; document.getElementById('stat2').innerText = content.stat2; document.getElementById('stat3').innerText = content.stat3; document.getElementById('gear-title').innerText = content.gearTitle; document.getElementById('work-title').innerText = content.workTitle; document.getElementById('vid1-title').innerText = content.vid1; document.getElementById('vid2-title').innerText = content.vid2; document.getElementById('vid3-title').innerText = content.vid3; document.getElementById('contact-title').innerText = content.contactTitle; document.getElementById('contact-desc').innerText = content.contactDesc; document.getElementById('btn-wa').innerText = content.btnWa; }
+        function toggleLanguage() { isArabic = !isArabic; const lang = isArabic ? 'ar' : 'en'; const content = translations[lang]; document.documentElement.dir = isArabic ? 'rtl' : 'ltr'; document.getElementById('bio').innerText = content.bio; document.getElementById('location-text').innerText = content.location; document.getElementById('stat1').innerText = content.stat1; document.getElementById('stat2').innerText = content.stat2; document.getElementById('stat3').innerText = content.stat3; document.getElementById('work-title').innerText = content.workTitle; document.getElementById('vid1-title').innerText = content.vid1; document.getElementById('vid2-title').innerText = content.vid2; document.getElementById('vid3-title').innerText = content.vid3; document.getElementById('contact-title').innerText = content.contactTitle; document.getElementById('contact-desc').innerText = content.contactDesc; document.getElementById('btn-wa').innerText = content.btnWa; }
     </script>
 </body>
 </html>
