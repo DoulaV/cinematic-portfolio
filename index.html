@@ -2,41 +2,90 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Akadoola | Cinematic Storyteller</title>
+    
     <link rel="icon" type="image/jpeg" href="./Profile.jpg">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;600;900&family=Oswald:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
-        :root { --primary-red: #E50914; --bg-dark: #0a0a0a; --sun-gold: #FFD700; /* لون ذهبي للشمس */ }
-        body { font-family: 'Cairo', sans-serif; background-color: var(--bg-dark); color: #fff; overflow-x: hidden; scroll-behavior: smooth; }
-        body[dir="ltr"] { font-family: 'Oswald', sans-serif; }
+        :root { --primary-red: #E50914; --bg-dark: #050505; --sun-gold: #FFD700; }
         
-        /* تأثيرات الإضاءة */
-        .red-glow { text-shadow: 0 0 20px rgba(229, 9, 20, 0.6); }
-        
-        /* تعديل الإضاءة الحمراء لتصبح أكثر ديناميكية */
-        .ambient-light-red { position: absolute; width: 300px; height: 300px; background: radial-gradient(circle, rgba(229,9,20,0.2) 0%, rgba(0,0,0,0) 70%); top: -100px; right: -100px; z-index: -1; animation: pulse-red 6s infinite alternate; }
-        @keyframes pulse-red { 0% { opacity: 0.4; transform: scale(1) translate(0,0); } 100% { opacity: 0.7; transform: scale(1.3) translate(-20px, 20px); } }
+        html, body {
+            width: 100%; max-width: 100%; overflow-x: hidden;
+            margin: 0; padding: 0;
+            background-color: var(--bg-dark);
+            font-family: 'Cairo', sans-serif; color: #fff;
+            scroll-behavior: smooth;
+        }
 
-        /* إضافة إضاءة الشمس الذهبية */
-        .ambient-light-sun { position: absolute; width: 400px; height: 400px; background: radial-gradient(circle, rgba(255, 215, 0, 0.15) 0%, rgba(0,0,0,0) 60%); bottom: -150px; left: -150px; z-index: -2; animation: pulse-sun 8s infinite alternate-reverse; }
-        @keyframes pulse-sun { 0% { opacity: 0.3; transform: scale(1) translate(0,0); } 100% { opacity: 0.6; transform: scale(1.2) translate(30px, -30px); } }
+        body[dir="ltr"] { font-family: 'Oswald', sans-serif; }
+        .red-glow { text-shadow: 0 0 20px rgba(229, 9, 20, 0.8); }
         
-        /* تحسينات الكروت */
-        .gear-item { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); transition: all 0.3s; }
-        .gear-item:hover { border-color: var(--primary-red); transform: translateY(-5px); }
+        /* --- 1. إضاءة الخلفية (Fixed & Huge) --- */
+        /* position: fixed >> عشان تثبت والكونتنت يتحرك */
+        /* width: 60vw >> يعني 60% من عرض الشاشة مهما كانت كبيرة */
         
-        /* ستايل الفيديو السينمائي */
-        .reel-card { border-radius: 15px; overflow: hidden; position: relative; border: 1px solid #333; transition: transform 0.3s; background: black; }
-        .reel-card:hover { transform: scale(1.02); border-color: var(--primary-red); }
+        .ambient-light-red {
+            position: fixed; 
+            width: 60vw; height: 60vw; 
+            background: radial-gradient(circle, rgba(229,9,20,0.25) 0%, rgba(0,0,0,0) 70%); 
+            top: -20%; right: -20%; 
+            z-index: -1; 
+            pointer-events: none;
+            animation: pulse-red 8s infinite alternate;
+        }
+
+        .ambient-light-sun {
+            position: fixed;
+            width: 70vw; height: 70vw; 
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.15) 0%, rgba(0,0,0,0) 60%); 
+            bottom: -20%; left: -20%; 
+            z-index: -2; 
+            pointer-events: none;
+            animation: pulse-sun 10s infinite alternate-reverse;
+        }
+
+        /* أنيميشن هادئ جداً */
+        @keyframes pulse-red { 0% { transform: scale(1) translate(0,0); opacity: 0.5; } 100% { transform: scale(1.1) translate(-20px, 20px); opacity: 0.8; } }
+        @keyframes pulse-sun { 0% { transform: scale(1) translate(0,0); opacity: 0.4; } 100% { transform: scale(1.15) translate(30px, -30px); opacity: 0.7; } }
+        
+        /* --- 2. ستايل الزجاج (Glassmorphism) --- */
+        /* الكروت والمعدات هتكون شفافة عشان تبين الخلفية */
+        
+        .glass-panel {
+            background: rgba(20, 20, 20, 0.4); /* أسود شفاف */
+            backdrop-filter: blur(12px); /* تأثير الزجاج */
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        .gear-item {
+            background: rgba(255,255,255,0.03); 
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255,255,255,0.05); 
+            transition: all 0.3s; 
+        }
+        .gear-item:hover { border-color: var(--primary-red); transform: translateY(-5px); background: rgba(229, 9, 20, 0.1); }
+        
+        .reel-card { 
+            border-radius: 15px; overflow: hidden; position: relative; 
+            border: 1px solid rgba(255, 255, 255, 0.1); 
+            transition: transform 0.3s, border-color 0.3s; 
+            background: rgba(0,0,0,0.5); /* شفاف بدل الأسود الصريح */
+        }
+        .reel-card:hover { transform: scale(1.02); border-color: var(--primary-red); box-shadow: 0 0 30px rgba(229, 9, 20, 0.2); }
+        
         video { object-fit: cover; width: 100%; height: 100%; cursor: pointer; }
 
-        /* زر اللغة */
-        .lang-btn { position: fixed; top: 20px; left: 20px; z-index: 100; background: rgba(0,0,0,0.6); backdrop-filter: blur(5px); border: 1px solid #333; color: white; padding: 8px 16px; border-radius: 50px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        /* الأزرار العائمة */
+        .lang-btn { position: fixed; top: 20px; left: 20px; z-index: 100; background: rgba(0,0,0,0.5); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2); color: white; padding: 8px 16px; border-radius: 50px; font-weight: bold; cursor: pointer; transition: 0.3s; }
         body[dir="ltr"] .lang-btn { left: auto; right: 20px; }
-        .lang-btn:hover { border-color: var(--primary-red); color: var(--primary-red); }
+        .lang-btn:hover { border-color: var(--primary-red); color: var(--primary-red); background: rgba(0,0,0,0.8); }
     </style>
 </head>
 <body class="antialiased">
@@ -46,28 +95,28 @@
     <div class="ambient-light-red"></div>
     <div class="ambient-light-sun"></div>
 
-    <section class="min-h-screen flex flex-col justify-center items-center text-center p-6 relative">
-        <div class="w-32 h-32 md:w-40 md:h-40 rounded-full border-4 border-[#E50914] p-1 mb-6 shadow-2xl relative overflow-hidden group">
+    <section class="min-h-screen flex flex-col justify-center items-center text-center p-6 relative w-full">
+        <div class="w-32 h-32 md:w-40 md:h-40 rounded-full border-4 border-[#E50914] p-1 mb-6 shadow-2xl relative overflow-hidden group glass-panel">
             <img src="./Profile.jpg" alt="Akadoola" class="w-full h-full rounded-full object-cover transition duration-500">
         </div>
 
-        <h1 class="text-5xl md:text-7xl font-black mb-2 tracking-tighter">
+        <h1 class="text-5xl md:text-7xl font-black mb-2 tracking-tighter drop-shadow-lg">
             AKADOOLA <span class="text-[#E50914] text-6xl">.</span>
         </h1>
-        <p id="bio" class="text-xl text-gray-400 font-light mb-8 max-w-lg mx-auto">صانع محتوى سينمائي | قصص عميقة</p>
+        <p id="bio" class="text-xl text-gray-300 font-light mb-8 max-w-lg mx-auto drop-shadow-md">صانع محتوى سينمائي | قصص عميقة</p>
 
         <div class="flex gap-6 mb-12">
             <div class="text-center">
                 <span class="block text-3xl font-bold text-white red-glow">2.3M</span>
-                <span id="stat1" class="text-xs text-gray-500">مشاهدات فايرال</span>
+                <span id="stat1" class="text-xs text-gray-400">مشاهدات فايرال</span>
             </div>
             <div class="text-center">
                 <span class="block text-3xl font-bold text-white">300K</span>
-                <span id="stat2" class="text-xs text-gray-500">تفاعل حقيقي</span>
+                <span id="stat2" class="text-xs text-gray-400">تفاعل حقيقي</span>
             </div>
             <div class="text-center">
                 <span class="block text-3xl font-bold text-white">High</span>
-                <span id="stat3" class="text-xs text-gray-500">جودة سينمائية</span>
+                <span id="stat3" class="text-xs text-gray-400">جودة سينمائية</span>
             </div>
         </div>
 
@@ -76,42 +125,53 @@
         </a>
     </section>
 
-    <section id="work" class="py-20 px-6 max-w-6xl mx-auto">
-        <h2 id="work-title" class="text-3xl font-bold mb-10 border-r-4 border-[#E50914] pr-4">أفضل الأعمال</h2>
+    <section class="py-10 px-6 border-b border-gray-800 w-full bg-black/30 backdrop-blur-sm">
+        <div class="max-w-4xl mx-auto">
+            <h3 id="gear-title" class="text-center text-gray-400 text-sm uppercase tracking-widest mb-6">معداتي (My Arsenal)</h3>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                <div class="gear-item p-4 rounded-xl"><i class="fa-solid fa-camera text-[#E50914] text-2xl mb-2"></i><p class="font-bold text-sm">Sony a6700</p></div>
+                <div class="gear-item p-4 rounded-xl"><i class="fa-solid fa-laptop-code text-[#E50914] text-2xl mb-2"></i><p class="font-bold text-sm">MacBook Pro M5</p></div>
+                <div class="gear-item p-4 rounded-xl"><i class="fa-solid fa-lightbulb text-[#E50914] text-2xl mb-2"></i><p class="font-bold text-sm">Amaran 200x S</p></div>
+                <div class="gear-item p-4 rounded-xl"><i class="fa-solid fa-video text-[#E50914] text-2xl mb-2"></i><p class="font-bold text-sm">DJI RS4 Mini</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="work" class="py-20 px-6 max-w-6xl mx-auto w-full">
+        <h2 id="work-title" class="text-3xl font-bold mb-10 border-r-4 border-[#E50914] pr-4 drop-shadow-md">أفضل الأعمال</h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
             
-            <div class="reel-card bg-black">
+            <div class="reel-card glass-panel">
                 <div class="aspect-[9/16] relative">
-                    <video controls preload="metadata" class="absolute inset-0 w-full h-full">
+                    <video controls preload="metadata" poster="./thumb1.jpg" class="absolute inset-0 w-full h-full">
                         <source src="./reel1.mp4" type="video/mp4">
-                        المتصفح لا يدعم تشغيل الفيديو.
                     </video>
                 </div>
-                <div class="p-4 bg-gray-900 absolute bottom-0 w-full bg-opacity-80 backdrop-blur-sm pointer-events-none">
+                <div class="p-4 bg-gradient-to-t from-black via-black/80 to-transparent absolute bottom-0 w-full pointer-events-none">
                     <h3 id="vid1-title" class="text-lg font-bold">العمر والوقت</h3>
                     <p class="text-[#E50914] font-bold text-xs">2.3M Views</p>
                 </div>
             </div>
 
-            <div class="reel-card bg-black">
+            <div class="reel-card glass-panel">
                  <div class="aspect-[9/16] relative">
-                    <video controls preload="metadata" class="absolute inset-0 w-full h-full">
+                    <video controls preload="metadata" poster="./thumb2.jpg" class="absolute inset-0 w-full h-full">
                         <source src="./reel2.mp4" type="video/mp4">
                     </video>
                 </div>
-                <div class="p-4 bg-gray-900 absolute bottom-0 w-full bg-opacity-80 backdrop-blur-sm pointer-events-none">
+                <div class="p-4 bg-gradient-to-t from-black via-black/80 to-transparent absolute bottom-0 w-full pointer-events-none">
                     <h3 id="vid2-title" class="text-lg font-bold">التعبير عن المشاعر</h3>
                     <p class="text-gray-400 font-bold text-xs">300K Views</p>
                 </div>
             </div>
 
-            <div class="reel-card bg-black">
+            <div class="reel-card glass-panel">
                  <div class="aspect-[9/16] relative">
-                    <video controls preload="metadata" class="absolute inset-0 w-full h-full">
+                    <video controls preload="metadata" poster="./thumb3.jpg" class="absolute inset-0 w-full h-full">
                         <source src="./reel3.mp4" type="video/mp4">
                     </video>
                 </div>
-                <div class="p-4 bg-gray-900 absolute bottom-0 w-full bg-opacity-80 backdrop-blur-sm pointer-events-none">
+                <div class="p-4 bg-gradient-to-t from-black via-black/80 to-transparent absolute bottom-0 w-full pointer-events-none">
                     <h3 id="vid3-title" class="text-lg font-bold">عمل تجاري</h3>
                     <p class="text-gray-400 font-bold text-xs">High Quality</p>
                 </div>
@@ -120,15 +180,15 @@
         </div>
     </section>
 
-    <section class="py-20 px-6 bg-[#0f0f0f] border-t border-gray-800 text-center">
+    <section class="py-20 px-6 border-t border-gray-800 text-center w-full bg-black/40 backdrop-blur-md">
         <h2 id="contact-title" class="text-4xl font-black mb-4">جاهز للعمل؟</h2>
         <p id="contact-desc" class="text-gray-400 mb-10">متاح للرعايات والإنتاج السينمائي</p>
         <div class="flex flex-col md:flex-row justify-center gap-4 max-w-2xl mx-auto">
-            <a href="https://wa.me/971565854189" target="_blank" class="flex-1 py-4 bg-[#25D366] text-black font-bold rounded-xl hover:bg-[#20bd5a] flex items-center justify-center gap-2"><i class="fa-brands fa-whatsapp text-xl"></i> <span id="btn-wa">تواصل واتساب</span></a>
-            <a href="https://www.instagram.com/akadoola/" target="_blank" class="flex-1 py-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold rounded-xl flex items-center justify-center gap-2"><i class="fa-brands fa-instagram text-xl"></i> Instagram</a>
-            <a href="mailto:akadoolaa@gmail.com" class="flex-1 py-4 bg-gray-800 text-white font-bold rounded-xl flex items-center justify-center gap-2"><i class="fa-solid fa-envelope text-xl"></i> Email</a>
+            <a href="https://wa.me/971565854189" target="_blank" class="flex-1 py-4 bg-[#25D366] text-black font-bold rounded-xl hover:bg-[#20bd5a] flex items-center justify-center gap-2 shadow-lg shadow-green-900/20"><i class="fa-brands fa-whatsapp text-xl"></i> <span id="btn-wa">تواصل واتساب</span></a>
+            <a href="https://www.instagram.com/akadoola/" target="_blank" class="flex-1 py-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold rounded-xl hover:opacity-90 flex items-center justify-center gap-2 shadow-lg shadow-purple-900/20"><i class="fa-brands fa-instagram text-xl"></i> Instagram</a>
+            <a href="mailto:akadoolaa@gmail.com" class="flex-1 py-4 bg-gray-800 text-white font-bold rounded-xl flex items-center justify-center gap-2 hover:bg-gray-700 border border-gray-700"><i class="fa-solid fa-envelope text-xl"></i> Email</a>
         </div>
-        <p class="mt-12 text-gray-600 text-sm dir-ltr">© 2025 Akadoola. All Rights Reserved.</p>
+        <p class="mt-12 text-gray-500 text-sm dir-ltr">© 2025 Akadoola. All Rights Reserved.</p>
     </section>
 
     <script>
