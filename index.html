@@ -5,83 +5,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Akadoola | Cinematic Storyteller</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;600;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;600;900&family=Oswald:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root {
-            --primary-red: #E50914; /* Netflix Red vibe */
-            --bg-dark: #0a0a0a;
-        }
+        :root { --primary-red: #E50914; --bg-dark: #0a0a0a; }
         body { font-family: 'Cairo', sans-serif; background-color: var(--bg-dark); color: #fff; overflow-x: hidden; scroll-behavior: smooth; }
-        
-        /* تأثيرات النيون الأحمر */
-        .red-glow {
-            text-shadow: 0 0 20px rgba(229, 9, 20, 0.6);
-        }
-        .border-glow {
-            box-shadow: 0 0 15px rgba(229, 9, 20, 0.3);
-            border: 1px solid rgba(229, 9, 20, 0.4);
-        }
-        
-        /* خلفية سينمائية متحركة */
-        .ambient-light {
-            position: absolute;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(229,9,20,0.2) 0%, rgba(0,0,0,0) 70%);
-            top: -100px;
-            right: -100px;
-            z-index: -1;
-            animation: pulse 5s infinite alternate;
-        }
-
-        @keyframes pulse {
-            0% { opacity: 0.5; transform: scale(1); }
-            100% { opacity: 0.8; transform: scale(1.2); }
-        }
-
-        /* تحسين شكل الفيديوهات */
-        .reel-card {
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-            border-radius: 15px;
-        }
-        .reel-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 30px rgba(229, 9, 20, 0.2);
-        }
+        body[dir="ltr"] { font-family: 'Oswald', sans-serif; }
+        .red-glow { text-shadow: 0 0 20px rgba(229, 9, 20, 0.6); }
+        .ambient-light { position: absolute; width: 300px; height: 300px; background: radial-gradient(circle, rgba(229,9,20,0.2) 0%, rgba(0,0,0,0) 70%); top: -100px; right: -100px; z-index: -1; animation: pulse 5s infinite alternate; }
+        @keyframes pulse { 0% { opacity: 0.5; transform: scale(1); } 100% { opacity: 0.8; transform: scale(1.2); } }
+        .gear-item { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); transition: all 0.3s; }
+        .gear-item:hover { border-color: var(--primary-red); transform: translateY(-5px); }
+        .lang-btn { position: fixed; top: 20px; left: 20px; z-index: 100; background: rgba(0,0,0,0.6); backdrop-filter: blur(5px); border: 1px solid #333; color: white; padding: 8px 16px; border-radius: 50px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        body[dir="ltr"] .lang-btn { left: auto; right: 20px; }
+        .lang-btn:hover { border-color: var(--primary-red); color: var(--primary-red); }
     </style>
 </head>
 <body class="antialiased">
 
+    <button onclick="toggleLanguage()" class="lang-btn">EN / AR</button>
     <div class="ambient-light"></div>
 
     <section class="min-h-screen flex flex-col justify-center items-center text-center p-6 relative">
-        
         <div class="w-32 h-32 md:w-40 md:h-40 rounded-full border-4 border-[#E50914] p-1 mb-6 shadow-2xl relative overflow-hidden group">
-            <img src="https://via.placeholder.com/150" alt="Akadoola" class="w-full h-full rounded-full object-cover grayscale group-hover:grayscale-0 transition duration-500">
+            <img src="./profile.jpg" alt="Akadoola" class="w-full h-full rounded-full object-cover transition duration-500">
         </div>
 
         <h1 class="text-5xl md:text-7xl font-black mb-2 tracking-tighter">
             AKADOOLA <span class="text-[#E50914] text-6xl">.</span>
         </h1>
-        <p class="text-xl text-gray-400 font-light mb-8 max-w-lg mx-auto">
-            صانع محتوى سينمائي | قصص عميقة | <span class="text-[#E50914] font-bold">2.6M+ Views</span>
-        </p>
+        <p id="bio" class="text-xl text-gray-400 font-light mb-8 max-w-lg mx-auto">صانع محتوى سينمائي | قصص عميقة</p>
 
         <div class="flex gap-6 mb-12">
             <div class="text-center">
                 <span class="block text-3xl font-bold text-white red-glow">2.3M</span>
-                <span class="text-xs text-gray-500">Top Viral</span>
+                <span id="stat1" class="text-xs text-gray-500">مشاهدات فايرال</span>
             </div>
             <div class="text-center">
                 <span class="block text-3xl font-bold text-white">300K</span>
-                <span class="text-xs text-gray-500">Engaged</span>
+                <span id="stat2" class="text-xs text-gray-500">تفاعل حقيقي</span>
             </div>
             <div class="text-center">
                 <span class="block text-3xl font-bold text-white">High</span>
-                <span class="text-xs text-gray-500">Quality</span>
+                <span id="stat3" class="text-xs text-gray-500">جودة سينمائية</span>
             </div>
         </div>
 
@@ -90,65 +56,78 @@
         </a>
     </section>
 
+    <section class="py-10 px-6 border-b border-gray-900">
+        <div class="max-w-4xl mx-auto">
+            <h3 id="gear-title" class="text-center text-gray-500 text-sm uppercase tracking-widest mb-6">معداتي (My Arsenal)</h3>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                <div class="gear-item p-4 rounded-xl"><i class="fa-solid fa-camera text-[#E50914] text-2xl mb-2"></i><p class="font-bold text-sm">Sony a6700</p></div>
+                <div class="gear-item p-4 rounded-xl"><i class="fa-solid fa-laptop-code text-[#E50914] text-2xl mb-2"></i><p class="font-bold text-sm">MacBook Pro M5</p></div>
+                <div class="gear-item p-4 rounded-xl"><i class="fa-solid fa-lightbulb text-[#E50914] text-2xl mb-2"></i><p class="font-bold text-sm">Amaran 200x S</p></div>
+                <div class="gear-item p-4 rounded-xl"><i class="fa-solid fa-video text-[#E50914] text-2xl mb-2"></i><p class="font-bold text-sm">DJI RS4 Mini</p></div>
+            </div>
+        </div>
+    </section>
+
     <section id="work" class="py-20 px-6 max-w-6xl mx-auto">
-        <h2 class="text-3xl font-bold mb-10 border-r-4 border-[#E50914] pr-4">أفضل الأعمال <span class="text-gray-600 text-sm font-light mr-2">(Selected Work)</span></h2>
-        
+        <h2 id="work-title" class="text-3xl font-bold mb-10 border-r-4 border-[#E50914] pr-4">أفضل الأعمال</h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="reel-card bg-gray-900 border border-gray-800">
-                <div class="aspect-[9/16] bg-gray-800 flex items-center justify-center relative group">
-                    <span class="text-gray-500 text-6xl"><i class="fa-solid fa-play"></i></span>
-                    <div class="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
-                        <span class="text-white font-bold">شاهد الفيديو</span>
-                    </div>
+            
+            <div class="reel-card bg-gray-900 border border-gray-800 rounded-xl overflow-hidden">
+                <div class="aspect-[9/16] bg-gray-800 flex items-center justify-center">
+                    <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DMcClVsSpr7/" data-instgrm-version="14" style="background:#FFF; border:0; margin: 1px; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"></blockquote>
                 </div>
-                <div class="p-4">
-                    <h3 class="text-xl font-bold text-white">قصة العمر والوقت</h3>
-                    <p class="text-[#E50914] font-bold mt-1"><i class="fa-solid fa-fire"></i> 2.3 Million Views</p>
-                </div>
+                <div class="p-4"><h3 id="vid1-title" class="text-xl font-bold">العمر والوقت</h3><p class="text-[#E50914] font-bold text-sm">2.3M Views</p></div>
             </div>
 
-            <div class="reel-card bg-gray-900 border border-gray-800">
-                <div class="aspect-[9/16] bg-gray-800 flex items-center justify-center relative group">
-                     <span class="text-gray-500 text-6xl"><i class="fa-solid fa-play"></i></span>
+            <div class="reel-card bg-gray-900 border border-gray-800 rounded-xl overflow-hidden">
+                <div class="aspect-[9/16] bg-gray-800 flex items-center justify-center">
+                    <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DMk6yjrSp7N/" data-instgrm-version="14" style="background:#FFF; border:0; margin: 1px; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"></blockquote>
                 </div>
-                <div class="p-4">
-                    <h3 class="text-xl font-bold text-white">عدم الاستسلام</h3>
-                    <p class="text-gray-300 font-bold mt-1"><i class="fa-solid fa-eye"></i> 300K Views</p>
-                </div>
+                <div class="p-4"><h3 id="vid2-title" class="text-xl font-bold">التعبير عن المشاعر</h3><p class="text-gray-400 font-bold text-sm">300K Views</p></div>
             </div>
 
-            <div class="reel-card bg-gray-900 border border-gray-800">
-                <div class="aspect-[9/16] bg-gray-800 flex items-center justify-center relative group">
-                     <span class="text-gray-500 text-6xl"><i class="fa-solid fa-play"></i></span>
+            <div class="reel-card bg-gray-900 border border-gray-800 rounded-xl overflow-hidden">
+                <div class="aspect-[9/16] bg-gray-800 flex items-center justify-center">
+                    <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DRxQhhZklVB/" data-instgrm-version="14" style="background:#FFF; border:0; margin: 1px; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"></blockquote>
                 </div>
-                <div class="p-4">
-                    <h3 class="text-xl font-bold text-white">عمل تجاري (مطعم)</h3>
-                    <p class="text-gray-300 font-bold mt-1"><i class="fa-solid fa-star"></i> High Quality</p>
-                </div>
+                <div class="p-4"><h3 id="vid3-title" class="text-xl font-bold">عمل تجاري</h3><p class="text-gray-400 font-bold text-sm">High Quality</p></div>
             </div>
+
         </div>
     </section>
 
     <section class="py-20 px-6 bg-[#0f0f0f] border-t border-gray-800 text-center">
-        <h2 class="text-4xl font-black mb-4">جاهز للعمل؟</h2>
-        <p class="text-gray-400 mb-10">متاح للرعايات والإنتاج السينمائي</p>
-        
+        <h2 id="contact-title" class="text-4xl font-black mb-4">جاهز للعمل؟</h2>
+        <p id="contact-desc" class="text-gray-400 mb-10">متاح للرعايات والإنتاج السينمائي</p>
         <div class="flex flex-col md:flex-row justify-center gap-4 max-w-2xl mx-auto">
-            <a href="https://wa.me/971565854189" target="_blank" class="flex-1 py-4 bg-[#25D366] text-black font-bold rounded-xl hover:bg-[#20bd5a] transition flex items-center justify-center gap-2">
-                <i class="fa-brands fa-whatsapp text-xl"></i> تواصل واتساب
-            </a>
-            
-            <a href="https://www.instagram.com/akadoola/" target="_blank" class="flex-1 py-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold rounded-xl hover:opacity-90 transition flex items-center justify-center gap-2">
-                <i class="fa-brands fa-instagram text-xl"></i> انستجرام
-            </a>
-            
-            <a href="mailto:akadoolaa@gmail.com" class="flex-1 py-4 bg-gray-800 border border-gray-700 text-white font-bold rounded-xl hover:bg-gray-700 transition flex items-center justify-center gap-2">
-                <i class="fa-solid fa-envelope text-xl"></i> إيميل
-            </a>
+            <a href="https://wa.me/971565854189" target="_blank" class="flex-1 py-4 bg-[#25D366] text-black font-bold rounded-xl hover:bg-[#20bd5a] flex items-center justify-center gap-2"><i class="fa-brands fa-whatsapp text-xl"></i> <span id="btn-wa">تواصل واتساب</span></a>
+            <a href="https://www.instagram.com/akadoola/" target="_blank" class="flex-1 py-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold rounded-xl flex items-center justify-center gap-2"><i class="fa-brands fa-instagram text-xl"></i> Instagram</a>
+            <a href="mailto:akadoolaa@gmail.com" class="flex-1 py-4 bg-gray-800 text-white font-bold rounded-xl flex items-center justify-center gap-2"><i class="fa-solid fa-envelope text-xl"></i> Email</a>
         </div>
-        
         <p class="mt-12 text-gray-600 text-sm dir-ltr">© 2025 Akadoola. All Rights Reserved.</p>
     </section>
 
+    <script>
+        let isArabic = true;
+        const translations = {
+            ar: { bio: "صانع محتوى سينمائي | قصص عميقة", stat1: "مشاهدات فايرال", stat2: "تفاعل حقيقي", stat3: "جودة سينمائية", gearTitle: "معداتي (MY ARSENAL)", workTitle: "أفضل الأعمال", vid1: "العمر والوقت", vid2: "عدم الاستسلام", vid3: "عمل تجاري", contactTitle: "جاهز للعمل؟", contactDesc: "متاح للرعايات والإنتاج السينمائي", btnWa: "تواصل واتساب" },
+            en: { bio: "Cinematic Storyteller | Deep Narratives", stat1: "Viral Views", stat2: "Real Engagement", stat3: "Cinematic Quality", gearTitle: "MY ARSENAL", workTitle: "Selected Work", vid1: "Time & Age", vid2: "Resilience", vid3: "Commercial Work", contactTitle: "Ready to Create?", contactDesc: "Available for Sponsorships & Production", btnWa: "Chat on WhatsApp" }
+        };
+        function toggleLanguage() { isArabic = !isArabic; const lang = isArabic ? 'ar' : 'en'; const content = translations[lang]; document.documentElement.dir = isArabic ? 'rtl' : 'ltr'; document.getElementById('bio').innerText = content.bio; document.getElementById('stat1').innerText = content.stat1; document.getElementById('stat2').innerText = content.stat2; document.getElementById('stat3').innerText = content.stat3; document.getElementById('gear-title').innerText = content.gearTitle; document.getElementById('work-title').innerText = content.workTitle; document.getElementById('vid1-title').innerText = content.vid1; document.getElementById('vid2-title').innerText = content.vid2; document.getElementById('vid3-title').innerText = content.vid3; document.getElementById('contact-title').innerText = content.contactTitle; document.getElementById('contact-desc').innerText = content.contactDesc; document.getElementById('btn-wa').innerText = content.btnWa; }
+    </script>
+
+    <script async src="https://www.instagram.com/embed.js"></script>
+    <script>
+        // هذا الكود يجبر المتصفح على تحميل الفيديو حتى لو تأخر
+        document.addEventListener("DOMContentLoaded", function() {
+            if(window.instgrm) {
+                window.instgrm.Embeds.process();
+            } else {
+                setTimeout(function() {
+                    if(window.instgrm) window.instgrm.Embeds.process();
+                }, 1500); // حاول مرة أخرى بعد ثانية ونصف
+            }
+        });
+    </script>
 </body>
 </html>
