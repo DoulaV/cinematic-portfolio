@@ -25,28 +25,26 @@
         body[dir="ltr"] { font-family: 'Oswald', sans-serif; }
         .red-glow { text-shadow: 0 0 30px rgba(229, 9, 20, 1); }
         
-        /* --- 1. إضاءة الخلفية (تم إصلاح الاختفاء) --- */
-        /* التغيير: z-index بقى 0 عشان يظهر فوق الخلفية السوداء */
+        /* --- 1. إصلاح الإضاءة للموبايل (vmax Fix) --- */
+        /* vmax: بيضمن إن الحجم يفضل ضخم بناءً على الضلع الأكبر للشاشة */
         
         .ambient-light-red {
             position: fixed; 
-            width: 85vw; height: 85vw;
-            /* لون أحمر قوي جداً */
-            background: radial-gradient(circle, rgba(229, 9, 20, 0.6) 0%, rgba(0,0,0,0) 50%); 
-            top: -25%; right: -25%; 
-            z-index: 0; /* كان -1 وده سبب المشكلة */
+            width: 90vmax; height: 90vmax; /* استخدام vmax بدل vw */
+            background: radial-gradient(circle, rgba(229, 9, 20, 0.65) 0%, rgba(0,0,0,0) 65%); 
+            top: -30vmax; right: -30vmax; /* إزاحة نسبية */
+            z-index: 0; 
             pointer-events: none;
             animation: pulse-red 8s infinite alternate;
-            mix-blend-mode: screen; /* بيخلي الضوء يندمج بنعومة */
+            mix-blend-mode: screen;
         }
 
         .ambient-light-sun {
             position: fixed;
-            width: 90vw; height: 90vw;
-            /* لون ذهبي قوي */
-            background: radial-gradient(circle, rgba(255, 215, 0, 0.3) 0%, rgba(0,0,0,0) 60%); 
-            bottom: -30%; left: -30%; 
-            z-index: 0; /* كان -2 */
+            width: 100vmax; height: 100vmax;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.35) 0%, rgba(0,0,0,0) 60%); 
+            bottom: -40vmax; left: -40vmax; 
+            z-index: 0; 
             pointer-events: none;
             animation: pulse-sun 10s infinite alternate-reverse;
             mix-blend-mode: screen;
@@ -55,14 +53,9 @@
         @keyframes pulse-red { 0% { transform: scale(1); opacity: 0.7; } 100% { transform: scale(1.2); opacity: 1; } }
         @keyframes pulse-sun { 0% { transform: scale(1); opacity: 0.5; } 100% { transform: scale(1.2); opacity: 0.8; } }
         
-        /* --- 2. رفع المحتوى فوق الإضاءة --- */
-        /* لازم نخلي كل السكاشن أعلى من الإضاءة وإلا مش هتعرف تدوس على حاجة */
-        section, header, footer, .lang-btn {
-            position: relative;
-            z-index: 10;
-        }
+        /* --- 2. باقي الستايلات (زي ما هي) --- */
+        section, header, footer, .lang-btn { position: relative; z-index: 10; }
 
-        /* --- 3. باقي الستايلات --- */
         .glass-panel {
             background: rgba(20, 20, 20, 0.4);
             backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
@@ -113,7 +106,7 @@
 
         <div class="flex gap-6 mb-12">
             <div class="text-center">
-                <span class="block text-3xl font-bold text-white red-glow">2.6M+</span>
+                <span class="block text-3xl font-bold text-white red-glow">2.3M</span>
                 <span id="stat1" class="text-xs text-gray-400">مشاهدات فايرال</span>
             </div>
             <div class="text-center">
