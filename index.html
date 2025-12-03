@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akadoola | Cinematic Storyteller</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;600;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-red: #E50914; /* Netflix Red vibe */
+            --bg-dark: #0a0a0a;
+        }
+        body { font-family: 'Cairo', sans-serif; background-color: var(--bg-dark); color: #fff; overflow-x: hidden; scroll-behavior: smooth; }
+        
+        /* تأثيرات النيون الأحمر */
+        .red-glow {
+            text-shadow: 0 0 20px rgba(229, 9, 20, 0.6);
+        }
+        .border-glow {
+            box-shadow: 0 0 15px rgba(229, 9, 20, 0.3);
+            border: 1px solid rgba(229, 9, 20, 0.4);
+        }
+        
+        /* خلفية سينمائية متحركة */
+        .ambient-light {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(229,9,20,0.2) 0%, rgba(0,0,0,0) 70%);
+            top: -100px;
+            right: -100px;
+            z-index: -1;
+            animation: pulse 5s infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.5; transform: scale(1); }
+            100% { opacity: 0.8; transform: scale(1.2); }
+        }
+
+        /* تحسين شكل الفيديوهات */
+        .reel-card {
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+        }
+        .reel-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(229, 9, 20, 0.2);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="ambient-light"></div>
+
+    <section class="min-h-screen flex flex-col justify-center items-center text-center p-6 relative">
+        
+        <div class="w-32 h-32 md:w-40 md:h-40 rounded-full border-4 border-[#E50914] p-1 mb-6 shadow-2xl relative overflow-hidden group">
+            <img src="https://via.placeholder.com/150" alt="Akadoola" class="w-full h-full rounded-full object-cover grayscale group-hover:grayscale-0 transition duration-500">
+        </div>
+
+        <h1 class="text-5xl md:text-7xl font-black mb-2 tracking-tighter">
+            AKADOOLA <span class="text-[#E50914] text-6xl">.</span>
+        </h1>
+        <p class="text-xl text-gray-400 font-light mb-8 max-w-lg mx-auto">
+            صانع محتوى سينمائي | قصص عميقة | <span class="text-[#E50914] font-bold">2.6M+ Views</span>
+        </p>
+
+        <div class="flex gap-6 mb-12">
+            <div class="text-center">
+                <span class="block text-3xl font-bold text-white red-glow">2.3M</span>
+                <span class="text-xs text-gray-500">Top Viral</span>
+            </div>
+            <div class="text-center">
+                <span class="block text-3xl font-bold text-white">300K</span>
+                <span class="text-xs text-gray-500">Engaged</span>
+            </div>
+            <div class="text-center">
+                <span class="block text-3xl font-bold text-white">High</span>
+                <span class="text-xs text-gray-500">Quality</span>
+            </div>
+        </div>
+
+        <a href="#work" class="animate-bounce text-gray-500 hover:text-[#E50914] transition">
+            <i class="fa-solid fa-chevron-down text-2xl"></i>
+        </a>
+    </section>
+
+    <section id="work" class="py-20 px-6 max-w-6xl mx-auto">
+        <h2 class="text-3xl font-bold mb-10 border-r-4 border-[#E50914] pr-4">أفضل الأعمال <span class="text-gray-600 text-sm font-light mr-2">(Selected Work)</span></h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="reel-card bg-gray-900 border border-gray-800">
+                <div class="aspect-[9/16] bg-gray-800 flex items-center justify-center relative group">
+                    <span class="text-gray-500 text-6xl"><i class="fa-solid fa-play"></i></span>
+                    <div class="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+                        <span class="text-white font-bold">شاهد الفيديو</span>
+                    </div>
+                </div>
+                <div class="p-4">
+                    <h3 class="text-xl font-bold text-white">قصة العمر والوقت</h3>
+                    <p class="text-[#E50914] font-bold mt-1"><i class="fa-solid fa-fire"></i> 2.3 Million Views</p>
+                </div>
+            </div>
+
+            <div class="reel-card bg-gray-900 border border-gray-800">
+                <div class="aspect-[9/16] bg-gray-800 flex items-center justify-center relative group">
+                     <span class="text-gray-500 text-6xl"><i class="fa-solid fa-play"></i></span>
+                </div>
+                <div class="p-4">
+                    <h3 class="text-xl font-bold text-white">عدم الاستسلام</h3>
+                    <p class="text-gray-300 font-bold mt-1"><i class="fa-solid fa-eye"></i> 300K Views</p>
+                </div>
+            </div>
+
+            <div class="reel-card bg-gray-900 border border-gray-800">
+                <div class="aspect-[9/16] bg-gray-800 flex items-center justify-center relative group">
+                     <span class="text-gray-500 text-6xl"><i class="fa-solid fa-play"></i></span>
+                </div>
+                <div class="p-4">
+                    <h3 class="text-xl font-bold text-white">عمل تجاري (مطعم)</h3>
+                    <p class="text-gray-300 font-bold mt-1"><i class="fa-solid fa-star"></i> High Quality</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 px-6 bg-[#0f0f0f] border-t border-gray-800 text-center">
+        <h2 class="text-4xl font-black mb-4">جاهز للعمل؟</h2>
+        <p class="text-gray-400 mb-10">متاح للرعايات والإنتاج السينمائي</p>
+        
+        <div class="flex flex-col md:flex-row justify-center gap-4 max-w-2xl mx-auto">
+            <a href="https://wa.me/971565854189" target="_blank" class="flex-1 py-4 bg-[#25D366] text-black font-bold rounded-xl hover:bg-[#20bd5a] transition flex items-center justify-center gap-2">
+                <i class="fa-brands fa-whatsapp text-xl"></i> تواصل واتساب
+            </a>
+            
+            <a href="https://www.instagram.com/akadoola/" target="_blank" class="flex-1 py-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold rounded-xl hover:opacity-90 transition flex items-center justify-center gap-2">
+                <i class="fa-brands fa-instagram text-xl"></i> انستجرام
+            </a>
+            
+            <a href="mailto:akadoolaa@gmail.com" class="flex-1 py-4 bg-gray-800 border border-gray-700 text-white font-bold rounded-xl hover:bg-gray-700 transition flex items-center justify-center gap-2">
+                <i class="fa-solid fa-envelope text-xl"></i> إيميل
+            </a>
+        </div>
+        
+        <p class="mt-12 text-gray-600 text-sm dir-ltr">© 2025 Akadoola. All Rights Reserved.</p>
+    </section>
+
+</body>
+</html>
