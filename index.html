@@ -11,11 +11,22 @@
         :root { --primary-red: #E50914; --bg-dark: #0a0a0a; }
         body { font-family: 'Cairo', sans-serif; background-color: var(--bg-dark); color: #fff; overflow-x: hidden; scroll-behavior: smooth; }
         body[dir="ltr"] { font-family: 'Oswald', sans-serif; }
+        
+        /* تأثيرات الإضاءة */
         .red-glow { text-shadow: 0 0 20px rgba(229, 9, 20, 0.6); }
         .ambient-light { position: absolute; width: 300px; height: 300px; background: radial-gradient(circle, rgba(229,9,20,0.2) 0%, rgba(0,0,0,0) 70%); top: -100px; right: -100px; z-index: -1; animation: pulse 5s infinite alternate; }
         @keyframes pulse { 0% { opacity: 0.5; transform: scale(1); } 100% { opacity: 0.8; transform: scale(1.2); } }
+        
+        /* تحسينات الكروت */
         .gear-item { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); transition: all 0.3s; }
         .gear-item:hover { border-color: var(--primary-red); transform: translateY(-5px); }
+        
+        /* ستايل الفيديو السينمائي */
+        .reel-card { border-radius: 15px; overflow: hidden; position: relative; border: 1px solid #333; transition: transform 0.3s; background: black; }
+        .reel-card:hover { transform: scale(1.02); border-color: var(--primary-red); }
+        video { object-fit: cover; width: 100%; height: 100%; cursor: pointer; }
+
+        /* زر اللغة */
         .lang-btn { position: fixed; top: 20px; left: 20px; z-index: 100; background: rgba(0,0,0,0.6); backdrop-filter: blur(5px); border: 1px solid #333; color: white; padding: 8px 16px; border-radius: 50px; font-weight: bold; cursor: pointer; transition: 0.3s; }
         body[dir="ltr"] .lang-btn { left: auto; right: 20px; }
         .lang-btn:hover { border-color: var(--primary-red); color: var(--primary-red); }
@@ -24,11 +35,12 @@
 <body class="antialiased">
 
     <button onclick="toggleLanguage()" class="lang-btn">EN / AR</button>
+    
     <div class="ambient-light"></div>
 
     <section class="min-h-screen flex flex-col justify-center items-center text-center p-6 relative">
         <div class="w-32 h-32 md:w-40 md:h-40 rounded-full border-4 border-[#E50914] p-1 mb-6 shadow-2xl relative overflow-hidden group">
-            <img src="./profile.jpg" alt="Akadoola" class="w-full h-full rounded-full object-cover transition duration-500">
+            <img src="./Profile.jpg" alt="Akadoola" class="w-full h-full rounded-full object-cover transition duration-500">
         </div>
 
         <h1 class="text-5xl md:text-7xl font-black mb-2 tracking-tighter">
@@ -72,25 +84,41 @@
         <h2 id="work-title" class="text-3xl font-bold mb-10 border-r-4 border-[#E50914] pr-4">أفضل الأعمال</h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
             
-            <div class="reel-card bg-gray-900 border border-gray-800 rounded-xl overflow-hidden">
-                <div class="aspect-[9/16] bg-gray-800 flex items-center justify-center">
-                    <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DMcClVsSpr7/" data-instgrm-version="14" style="background:#FFF; border:0; margin: 1px; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"></blockquote>
+            <div class="reel-card bg-black">
+                <div class="aspect-[9/16] relative">
+                    <video controls preload="metadata" class="absolute inset-0 w-full h-full">
+                        <source src="./reel1.mp4" type="video/mp4">
+                        المتصفح لا يدعم تشغيل الفيديو.
+                    </video>
                 </div>
-                <div class="p-4"><h3 id="vid1-title" class="text-xl font-bold">العمر والوقت</h3><p class="text-[#E50914] font-bold text-sm">2.3M Views</p></div>
+                <div class="p-4 bg-gray-900 absolute bottom-0 w-full bg-opacity-80 backdrop-blur-sm pointer-events-none">
+                    <h3 id="vid1-title" class="text-lg font-bold">العمر والوقت</h3>
+                    <p class="text-[#E50914] font-bold text-xs">2.3M Views</p>
+                </div>
             </div>
 
-            <div class="reel-card bg-gray-900 border border-gray-800 rounded-xl overflow-hidden">
-                <div class="aspect-[9/16] bg-gray-800 flex items-center justify-center">
-                    <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DMk6yjrSp7N/" data-instgrm-version="14" style="background:#FFF; border:0; margin: 1px; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"></blockquote>
+            <div class="reel-card bg-black">
+                 <div class="aspect-[9/16] relative">
+                    <video controls preload="metadata" class="absolute inset-0 w-full h-full">
+                        <source src="./reel2.mp4" type="video/mp4">
+                    </video>
                 </div>
-                <div class="p-4"><h3 id="vid2-title" class="text-xl font-bold">التعبير عن المشاعر</h3><p class="text-gray-400 font-bold text-sm">300K Views</p></div>
+                <div class="p-4 bg-gray-900 absolute bottom-0 w-full bg-opacity-80 backdrop-blur-sm pointer-events-none">
+                    <h3 id="vid2-title" class="text-lg font-bold">التعبير عن المشاعر</h3>
+                    <p class="text-gray-400 font-bold text-xs">300K Views</p>
+                </div>
             </div>
 
-            <div class="reel-card bg-gray-900 border border-gray-800 rounded-xl overflow-hidden">
-                <div class="aspect-[9/16] bg-gray-800 flex items-center justify-center">
-                    <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DRxQhhZklVB/" data-instgrm-version="14" style="background:#FFF; border:0; margin: 1px; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"></blockquote>
+            <div class="reel-card bg-black">
+                 <div class="aspect-[9/16] relative">
+                    <video controls preload="metadata" class="absolute inset-0 w-full h-full">
+                        <source src="./reel3.mp4" type="video/mp4">
+                    </video>
                 </div>
-                <div class="p-4"><h3 id="vid3-title" class="text-xl font-bold">عمل تجاري</h3><p class="text-gray-400 font-bold text-sm">High Quality</p></div>
+                <div class="p-4 bg-gray-900 absolute bottom-0 w-full bg-opacity-80 backdrop-blur-sm pointer-events-none">
+                    <h3 id="vid3-title" class="text-lg font-bold">عمل تجاري</h3>
+                    <p class="text-gray-400 font-bold text-xs">High Quality</p>
+                </div>
             </div>
 
         </div>
@@ -114,20 +142,6 @@
             en: { bio: "Cinematic Storyteller | Deep Narratives", stat1: "Viral Views", stat2: "Real Engagement", stat3: "Cinematic Quality", gearTitle: "MY ARSENAL", workTitle: "Selected Work", vid1: "Time & Age", vid2: "Resilience", vid3: "Commercial Work", contactTitle: "Ready to Create?", contactDesc: "Available for Sponsorships & Production", btnWa: "Chat on WhatsApp" }
         };
         function toggleLanguage() { isArabic = !isArabic; const lang = isArabic ? 'ar' : 'en'; const content = translations[lang]; document.documentElement.dir = isArabic ? 'rtl' : 'ltr'; document.getElementById('bio').innerText = content.bio; document.getElementById('stat1').innerText = content.stat1; document.getElementById('stat2').innerText = content.stat2; document.getElementById('stat3').innerText = content.stat3; document.getElementById('gear-title').innerText = content.gearTitle; document.getElementById('work-title').innerText = content.workTitle; document.getElementById('vid1-title').innerText = content.vid1; document.getElementById('vid2-title').innerText = content.vid2; document.getElementById('vid3-title').innerText = content.vid3; document.getElementById('contact-title').innerText = content.contactTitle; document.getElementById('contact-desc').innerText = content.contactDesc; document.getElementById('btn-wa').innerText = content.btnWa; }
-    </script>
-
-    <script async src="https://www.instagram.com/embed.js"></script>
-    <script>
-        // هذا الكود يجبر المتصفح على تحميل الفيديو حتى لو تأخر
-        document.addEventListener("DOMContentLoaded", function() {
-            if(window.instgrm) {
-                window.instgrm.Embeds.process();
-            } else {
-                setTimeout(function() {
-                    if(window.instgrm) window.instgrm.Embeds.process();
-                }, 1500); // حاول مرة أخرى بعد ثانية ونصف
-            }
-        });
     </script>
 </body>
 </html>
